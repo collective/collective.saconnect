@@ -1,5 +1,6 @@
 from plone.z3cform.crud import crud
 from plone.app.z3cform.layout import wrap_form
+from rwproperty import getproperty, setproperty
 from zope import component, interface, schema
 from zope.i18n import translate
 from Products.CMFCore.interfaces import ISiteRoot
@@ -27,11 +28,39 @@ class IConnectionLine(interface.Interface):
 
 class ConnectionLine(object):
     interface.implements(IConnectionLine)
-    connname = None
-    connstring = None
-    def __init__(self, name, string):
-        self.connname = name
-        self.connstring = string
+    
+    def __init__(self, name, string, form):
+        self._connname = name
+        self._connstring = string
+        self._form = form
+    
+    @getproperty
+    def connname(self):
+        return self._connname
+    
+    @setproperty
+    def connname(self, name):
+        name = name.strip()
+        if name == self._connname:
+            return
+        
+        storage = self._form.storage
+        del storage[self._connname]
+        storage[name] = self.connstring
+        self._connname = name
+    
+    @getproperty
+    def connstring(self):
+        return self._connstring
+    
+    @setproperty
+    def connstring(self, string):
+        string = string.strip()
+        if string == self._connstring:
+            return
+        
+        storage = self._form.storage
+        storage[self.connname] = self._connstring = string
 
 class SQLAlchemyConnectionsForm(crud.CrudForm):
     label = _(u'label_saconnectform', u'Manage SQLAlchemy connection strings')
@@ -45,7 +74,7 @@ class SQLAlchemyConnectionsForm(crud.CrudForm):
     def get_items(self):
         names = self.storage.keys()
         names.sort()
-        return [(name, ConnectionLine(name, self.storage[name]))
+        return [(name, ConnectionLine(name, self.storage[name], self))
             for name in names]
     
     def add(self, data):

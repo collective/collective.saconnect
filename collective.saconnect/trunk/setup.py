@@ -25,6 +25,7 @@ setup(name='collective.saconnect',
       install_requires=[
           'setuptools',
           'plone.z3cform',
+          'rwproperty',
           'zope.lifecycleevent',
           # -*- Extra requirements: -*-
       ],

@@ -1,0 +1,13 @@
+<configure xmlns="http://namespaces.zope.org/browser">
+
+<resource name="saconnect-icon.gif" file="saconnect-icon.gif" />
+
+<page
+    name="saconnect-controlpanel"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".panel.SQLAlchemyConnectionsView"
+    template="panel.pt"
+    permission="cmf.ManagePortal"
+    />
+
+</configure>

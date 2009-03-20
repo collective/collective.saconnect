@@ -1,7 +1,10 @@
 Changelog
 =========
 
-1.2 - Unreleased
+1.3 - Unreleased
+----------------
+
+1.2 - 2009-03-20
 ----------------
 
 * Fixed adding new entries after the editing fix.

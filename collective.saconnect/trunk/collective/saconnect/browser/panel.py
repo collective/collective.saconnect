@@ -86,7 +86,7 @@ class SQLAlchemyConnectionsForm(crud.CrudForm):
             raise schema.ValidationError(msg)
         
         self.storage[name] = data['connstring'].strip()
-        return ConnectionLine(name, data['connstring'].strip())
+        return ConnectionLine(name, data['connstring'].strip(), self)
 
     def remove(self, (id, item)):
         del self.storage[item.connname]

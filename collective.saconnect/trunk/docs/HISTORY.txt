@@ -4,6 +4,9 @@ Changelog
 1.2 - Unreleased
 ----------------
 
+* Fixed adding new entries after the editing fix.
+  [mj]
+
 1.1 - 2009-03-17
 ----------------
 

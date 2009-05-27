@@ -33,4 +33,10 @@
     handler=".genericsetup.exportConnections"
     />
 
+<!-- z3c.saconfig utilities -->
+<subscriber 
+    handler=".saconfig.syncUtility"
+    for="collective.saconnect.interfaces.ISQLAlchemyConnectionStrings
+         zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+    />
 </configure>

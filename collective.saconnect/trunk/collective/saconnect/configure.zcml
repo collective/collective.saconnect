@@ -3,6 +3,7 @@
   xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
   >
 
+<include package="plone.app.z3cform" />
 <include package=".browser" />
 
 <adapter factory=".storage.SQLAlchemyConnectionStrings" />

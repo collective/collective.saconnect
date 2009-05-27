@@ -4,6 +4,10 @@ Changelog
 1.3 - Unreleased
 ----------------
 
+* Update z3cform dependency to plone.app.z3cform, and add include it's 
+  configuration in configure.zcml.
+  [mj]
+
 1.2 - 2009-03-20
 ----------------
 

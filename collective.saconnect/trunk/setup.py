@@ -27,7 +27,6 @@ setup(name='collective.saconnect',
           'plone.app.z3cform',
           'rwproperty',
           'zope.lifecycleevent',
-          'z3c.saconfig',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

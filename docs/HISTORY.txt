@@ -1,7 +1,10 @@
 Changelog
 =========
 
-1.3 - Unreleased
+1.4 - Unreleased
+----------------
+
+1.3 - 2009-05-28
 ----------------
 
 * Update z3cform dependency to plone.app.z3cform, and add include it's 

@@ -1,5 +1,7 @@
+# optional z3c.saconfig support
 from zope.component import getUtility
 from zope.component import getSiteManager
+from z3c.saconfig.interfaces import IEngineFactory, ISiteScopedSession
 from z3c.saconfig.utility import EngineFactory
 from z3c.saconfig.utility import SiteScopedSession
 from z3c.saconfig.utility import SESSION_DEFAULTS
@@ -7,12 +9,18 @@ from Products.CMFCore.interfaces import ISiteRoot
 from persistent import Persistent
 
 from interfaces import ISQLAlchemyConnectionStrings
-from interfaces import ISiteScopedSessionEngineFactory
 
-class SiteScopedSessionEngineFactory(SiteScopedSession, EngineFactory, Persistent):
+
+class ISiteScopedSessionEngineFactory(ISiteScopedSession, IEngineFactory):
+    """All in one z3c.saconfig utility"""
+
+
+class SiteScopedSessionEngineFactory(SiteScopedSession, EngineFactory,
+                                     Persistent):
     """An all in one z3c.saconfig utility
     TODO: add configuration options
     """
+
     def __init__(self, name):
         self.name = name
 
@@ -28,6 +36,7 @@ class SiteScopedSessionEngineFactory(SiteScopedSession, EngineFactory, Persisten
         return [url], dict(convert_unicode=True)
 
     # SiteScopedSession
+
     @property
     def engine(self):
         return self.name

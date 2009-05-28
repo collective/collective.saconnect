@@ -1,6 +1,7 @@
 <configure 
   xmlns="http://namespaces.zope.org/zope"
   xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:zcml="http://namespaces.zope.org/zcml" 
   >
 
 <include package="plone.app.z3cform" />
@@ -33,8 +34,9 @@
     handler=".genericsetup.exportConnections"
     />
 
-<!-- z3c.saconfig utilities -->
-<subscriber 
+<!-- optional z3c.saconfig utilities -->
+<subscriber
+    zcml:condition="installed z3c.config"
     handler=".saconfig.syncUtility"
     for="collective.saconnect.interfaces.ISQLAlchemyConnectionStrings
          zope.lifecycleevent.interfaces.IObjectModifiedEvent"

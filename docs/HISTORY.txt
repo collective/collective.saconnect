@@ -8,6 +8,11 @@ Changelog
   configuration in configure.zcml.
   [mj]
 
+* Added optional support for z3c.saconfig connections; each connection
+  string in collective.saconnect automatically is registered as a z3c.saconfig
+  scoped session utility.
+  [elro, mj]
+
 1.2 - 2009-03-20
 ----------------
 

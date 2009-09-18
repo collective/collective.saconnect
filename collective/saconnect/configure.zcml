@@ -36,7 +36,7 @@
 
 <!-- optional z3c.saconfig utilities -->
 <subscriber
-    zcml:condition="installed z3c.config"
+    zcml:condition="installed z3c.saconfig"
     handler=".saconfig.syncUtility"
     for="collective.saconnect.interfaces.ISQLAlchemyConnectionStrings
          zope.lifecycleevent.interfaces.IObjectModifiedEvent"

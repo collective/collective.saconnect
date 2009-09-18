@@ -4,6 +4,9 @@ Changelog
 1.4 - Unreleased
 ----------------
 
+* Fix typo that prevented z3c.saconfig support from ever being enabled.
+  [elro]
+
 1.3 - 2009-05-28
 ----------------
 

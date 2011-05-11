@@ -4,6 +4,10 @@ Changelog
 1.4 - Unreleased
 ----------------
 
+* Include CMFCore's permissions.zcml under Plone 4, so the `cmf.ManagePortal`
+  permission is known.
+  [hannosch]
+
 * Fix typo that prevented z3c.saconfig support from ever being enabled.
   [elro]
 

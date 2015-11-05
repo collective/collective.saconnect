@@ -7,8 +7,8 @@
       package="Products.CMFCore"
   />
   <browser:resource
-      file="saconnect-icon.gif"
-      name="saconnect-icon.gif"
+      file="saconnect-icon.png"
+      name="saconnect-icon.png"
   />
   <browser:page
       class=".panel.SQLAlchemyConnectionsView"

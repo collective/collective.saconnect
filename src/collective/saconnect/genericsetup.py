@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective.saconnect.interfaces import ISQLAlchemyConnectionStrings
-from Products.GenericSetup.interfaces import IBody, ISetupEnviron
+from Products.GenericSetup.interfaces import IBody
+from Products.GenericSetup.interfaces import ISetupEnviron
 from Products.GenericSetup.utils import XMLAdapterBase
 from zope import component
 

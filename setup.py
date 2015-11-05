@@ -21,8 +21,9 @@ setup(
     author_email='info@jarn.com',
     url='http://pypi.python.org/pypi/collective.saconnect',
     license='GPL',
-    packages=find_packages(exclude=['ez_setup']),
+    packages=find_packages('src', exclude=['ez_setup']),
     namespace_packages=['collective'],
+    package_dir={'': 'src'},
     include_package_data=True,
     zip_safe=False,
     install_requires=[

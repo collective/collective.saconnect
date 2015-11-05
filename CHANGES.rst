@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.5 (unreleased)
+2.0 (unreleased)
 ----------------
 
 - Overhaul: autopep8/manual pep8, utf8-header, buildout/setup modernized

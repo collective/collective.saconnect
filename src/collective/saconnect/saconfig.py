@@ -60,10 +60,16 @@ def syncUtility(connections, event):
                 factory.reset()  # modify
             else:
                 factory = SiteScopedSessionEngineFactory(key)
-                sm.registerUtility(factory, name=key,
-                                   provided=ISiteScopedSessionEngineFactory)  # add
+                sm.registerUtility(  # add
+                    factory,
+                    name=key,
+                    provided=ISiteScopedSessionEngineFactory
+                )
         else:
             if factory is not None:
                 factory.reset()
-                sm.unregisterUtility(factory, name=key,
-                                     provided=ISiteScopedSessionEngineFactory)  # delete
+                sm.unregisterUtility(  # delete
+                    factory,
+                    name=key,
+                    provided=ISiteScopedSessionEngineFactory
+                )

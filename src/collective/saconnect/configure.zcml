@@ -1,7 +1,8 @@
-<configure 
+<configure
   xmlns="http://namespaces.zope.org/zope"
   xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-  xmlns:zcml="http://namespaces.zope.org/zcml" 
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  i18n_domain="collective.saconnect"
   >
 
 <include package="plone.app.z3cform" />

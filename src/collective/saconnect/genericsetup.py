@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope import component
 from Products.GenericSetup.interfaces import IBody, ISetupEnviron
 from Products.GenericSetup.utils import XMLAdapterBase

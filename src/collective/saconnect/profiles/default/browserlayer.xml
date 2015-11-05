@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+  <layer
+    name="collective.saconnect"
+    interface="collective.saconnect.interfaces.ICollectiveSAConnectLayer"
+  />
+</layers>

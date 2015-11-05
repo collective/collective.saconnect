@@ -1,4 +1,10 @@
 from zope.interface.common import mapping
+from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+
+
+class ICollectiveSAConnectLayer(IDefaultBrowserLayer):
+    """Browserlayer
+    """
 
 
 class ISQLAlchemyConnectionStrings(mapping.IMapping):

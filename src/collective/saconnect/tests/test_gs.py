@@ -1,14 +1,15 @@
-import unittest
-from zope.component import provideAdapter
-from zope.interface import directlyProvides
-from zope.testing import cleanup
+# -*- coding: utf-8 -*-
 from collective.saconnect.interfaces import ISQLAlchemyConnectionStrings
+from collective.saconnect.testing import COLLECTIVE_SACONNECT_INTEGRATION_TESTING  # noqa
 from Products.GenericSetup.testing import BodyAdapterTestCase
 from UserDict import UserDict
+from zope.component import provideAdapter
+from zope.interface import directlyProvides
+
+import unittest
 
 
-class SAConnectionStringsImportExportTests(BodyAdapterTestCase):
-    _BODY = '''\
+TESTBODY = '''\
 <?xml version="1.0"?>
 <connections>
  <connection name="bar" string="eggs"/>
@@ -16,17 +17,21 @@ class SAConnectionStringsImportExportTests(BodyAdapterTestCase):
 </connections>
 '''
 
+
+class TestGS(unittest.TestCase, BodyAdapterTestCase):
+    """Test that collective.saconnect is properly installed."""
+
+    layer = COLLECTIVE_SACONNECT_INTEGRATION_TESTING
+
+    _BODY = TESTBODY
+
     def setUp(self):
         self._obj = UserDict()
         directlyProvides(self._obj, ISQLAlchemyConnectionStrings)
         provideAdapter(self._getTargetClass())
 
-    def tearDown(self):
-        cleanup.cleanUp()
-
     def _getTargetClass(self):
-        from collective.saconnect.genericsetup import \
-            SQLAlchemyConnectionStringsXMLAdapter
+        from collective.saconnect.genericsetup import SQLAlchemyConnectionStringsXMLAdapter  # noqa
         return SQLAlchemyConnectionStringsXMLAdapter
 
     def _populate(self, obj):
@@ -35,10 +40,3 @@ class SAConnectionStringsImportExportTests(BodyAdapterTestCase):
 
     def _verifyImport(self, obj):
         self.assertEqual(obj, dict(foo='spam', bar='eggs'))
-
-del BodyAdapterTestCase
-
-
-def test_suite():
-    import sys
-    return unittest.findTestCases(sys.modules[__name__])

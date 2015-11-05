@@ -1,14 +1,14 @@
+# -*- coding: utf-8 -*-
 # optional z3c.saconfig support
-from zope.component import getUtility
-from zope.component import getSiteManager
+from collective.saconnect.interfaces import ISQLAlchemyConnectionStrings
+from persistent import Persistent
+from Products.CMFCore.interfaces import ISiteRoot
 from z3c.saconfig.interfaces import IEngineFactory, ISiteScopedSession
 from z3c.saconfig.utility import EngineFactory
-from z3c.saconfig.utility import SiteScopedSession
 from z3c.saconfig.utility import SESSION_DEFAULTS
-from Products.CMFCore.interfaces import ISiteRoot
-from persistent import Persistent
-
-from interfaces import ISQLAlchemyConnectionStrings
+from z3c.saconfig.utility import SiteScopedSession
+from zope.component import getSiteManager
+from zope.component import getUtility
 
 
 class ISiteScopedSessionEngineFactory(ISiteScopedSession, IEngineFactory):

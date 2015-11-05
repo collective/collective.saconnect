@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from zope import component
+from collective.saconnect.interfaces import ISQLAlchemyConnectionStrings
 from Products.GenericSetup.interfaces import IBody, ISetupEnviron
 from Products.GenericSetup.utils import XMLAdapterBase
-from interfaces import ISQLAlchemyConnectionStrings
+from zope import component
 
 FILENAME = 'saconnections.xml'
 

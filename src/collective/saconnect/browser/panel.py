@@ -1,19 +1,19 @@
-from plone.z3cform.crud import crud
-from plone.app.z3cform.layout import wrap_form
-from rwproperty import getproperty, setproperty
-from zope import component, interface, schema
-from zope.i18n import translate
-from Products.CMFCore.interfaces import ISiteRoot
-
+# -*- coding: utf-8 -*-
 from collective.saconnect import MessageFactory as _
 from collective.saconnect.interfaces import ISQLAlchemyConnectionStrings
+from plone.app.z3cform.layout import wrap_form
+from plone.z3cform.crud import crud
+from Products.CMFCore.interfaces import ISiteRoot
+from zope import schema
+from zope.component import getUtility
+from zope.i18n import translate
+from zope.interface import implementer
+from zope.interface import Interface
 
-#
-# One row in the form
-#
 
-
-class IConnectionLine(interface.Interface):
+class IConnectionLine(Interface):
+    """One row in the form
+    """
     connname = schema.ASCIILine(
         title=_(u'label_connection_name', default=u'Connection name'),
         description=_(u'description_connection_name', default=u''),
@@ -29,19 +29,19 @@ class IConnectionLine(interface.Interface):
     )
 
 
+@implementer(IConnectionLine)
 class ConnectionLine(object):
-    interface.implements(IConnectionLine)
 
     def __init__(self, name, string, form):
         self._connname = name
         self._connstring = string
         self._form = form
 
-    @getproperty
+    @property
     def connname(self):
         return self._connname
 
-    @setproperty
+    @connname.setter
     def connname(self, name):
         name = name.strip()
         if name == self._connname:
@@ -52,11 +52,11 @@ class ConnectionLine(object):
         storage[name] = self.connstring
         self._connname = name
 
-    @getproperty
+    @property
     def connstring(self):
         return self._connstring
 
-    @setproperty
+    @connstring.setter
     def connstring(self, string):
         string = string.strip()
         if string == self._connstring:
@@ -73,7 +73,8 @@ class SQLAlchemyConnectionsForm(crud.CrudForm):
     def __init__(self, context, request):
         crud.CrudForm.__init__(self, context, request)
         self.storage = ISQLAlchemyConnectionStrings(
-            component.getUtility(ISiteRoot))
+            getUtility(ISiteRoot)
+        )
 
     def get_items(self):
         names = self.storage.keys()

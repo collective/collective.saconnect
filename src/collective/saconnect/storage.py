@@ -1,19 +1,23 @@
-from persistent.mapping import PersistentMapping
-from zope import annotation, component, interface, lifecycleevent
-from UserDict import DictMixin
-
+# -*- coding: utf-8 -*-
 from interfaces import ISQLAlchemyConnectionStrings
+from persistent.mapping import PersistentMapping
+from UserDict import DictMixin
+from zope.annotation import IAnnotatable
+from zope.annotation import IAnnotations
+from zope.component import adapter
+from zope.interface import implementer
+from zope.lifecycleevent import modified
 
 ANNKEY = 'collective.saconnect.storage'
 
 
+@implementer(ISQLAlchemyConnectionStrings)
+@adapter(IAnnotatable)
 class SQLAlchemyConnectionStrings(DictMixin):
-    interface.implements(ISQLAlchemyConnectionStrings)
-    component.adapts(annotation.interfaces.IAnnotatable)
 
     def __init__(self, context):
         self.context = context
-        annotations = annotation.IAnnotations(self.context)
+        annotations = IAnnotations(self.context)
         self._dict = annotations.setdefault(ANNKEY, PersistentMapping())
 
     def __getitem__(self, key):
@@ -25,11 +29,11 @@ class SQLAlchemyConnectionStrings(DictMixin):
         if not isinstance(value, str):
             raise ValueError('Only plain ascii values are accepted')
         self._dict[key] = value
-        lifecycleevent.modified(self, key)
+        modified(self, key)
 
     def __delitem__(self, key):
         del self._dict[key]
-        lifecycleevent.modified(self, key)
+        modified(self, key)
 
     def keys(self):
         return self._dict.keys()

@@ -13,7 +13,7 @@
   <browser:page
       class=".panel.SQLAlchemyConnectionsView"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-      layer="collective.saconnect.ICollectiveSAConnectLayer"
+      layer="collective.saconnect.interfaces.ICollectiveSAConnectLayer"
       name="saconnect-controlpanel"
       permission="cmf.ManagePortal"
       template="panel.pt"

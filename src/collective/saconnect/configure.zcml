@@ -32,5 +32,6 @@
       for="collective.saconnect.interfaces.ISQLAlchemyConnectionStrings
            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
       handler=".saconfig.syncUtility"
+      zcml:condition="installed z3c.saconfig"
   />
 </configure>

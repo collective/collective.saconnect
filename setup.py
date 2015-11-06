@@ -29,12 +29,12 @@ setup(
     install_requires=[
         'Plone',
         'plone.app.z3cform',
-        'rwproperty',
         'setuptools',
     ],
     extras_require={
         'test': [
             'plone.app.testing',
+            'z3c.saconnect',
         ],
     },
     entry_points="""

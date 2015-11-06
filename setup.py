@@ -34,7 +34,7 @@ setup(
     extras_require={
         'test': [
             'plone.app.testing',
-            'z3c.saconnect',
+            'z3c.saconfig',
         ],
     },
     entry_points="""

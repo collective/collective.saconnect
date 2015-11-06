@@ -3,21 +3,28 @@
 from collective.saconnect.interfaces import ISQLAlchemyConnectionStrings
 from persistent import Persistent
 from Products.CMFCore.interfaces import ISiteRoot
-from z3c.saconfig.interfaces import IEngineFactory, ISiteScopedSession
+from z3c.saconfig.interfaces import IEngineFactory
+from z3c.saconfig.interfaces import ISiteScopedSession
 from z3c.saconfig.utility import EngineFactory
 from z3c.saconfig.utility import SESSION_DEFAULTS
 from z3c.saconfig.utility import SiteScopedSession
 from zope.component import getSiteManager
 from zope.component import getUtility
+from zope.interface import implementer
 
 
 class ISiteScopedSessionEngineFactory(ISiteScopedSession, IEngineFactory):
     """All in one z3c.saconfig utility"""
 
 
-class SiteScopedSessionEngineFactory(SiteScopedSession, EngineFactory,
-                                     Persistent):
-    """An all in one z3c.saconfig utility
+@implementer(ISiteScopedSessionEngineFactory)
+class SiteScopedSessionEngineFactory(
+    SiteScopedSession,
+    EngineFactory,
+    Persistent
+):
+    """An all in one z3c.saconfig local persistent utility
+
     TODO: add configuration options
     """
 
@@ -58,18 +65,17 @@ def syncUtility(connections, event):
         if key in connections.keys():
             if factory is not None:
                 factory.reset()  # modify
-            else:
-                factory = SiteScopedSessionEngineFactory(key)
-                sm.registerUtility(  # add
-                    factory,
-                    name=key,
-                    provided=ISiteScopedSessionEngineFactory
-                )
-        else:
-            if factory is not None:
-                factory.reset()
-                sm.unregisterUtility(  # delete
-                    factory,
-                    name=key,
-                    provided=ISiteScopedSessionEngineFactory
-                )
+                continue
+            factory = SiteScopedSessionEngineFactory(key)
+            sm.registerUtility(  # add
+                factory,
+                name=key,
+                provided=ISiteScopedSessionEngineFactory,
+            )
+            continue
+        if factory is not None:
+            factory.reset()
+            sm.unregisterUtility(  # delete
+                factory,
+                name=key,
+            )

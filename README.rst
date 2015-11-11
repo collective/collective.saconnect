@@ -60,3 +60,12 @@ The event includes the key of the modified string, so you can easily refresh you
         if 'myconnectionstring' in event.descriptions:
             getUtility(IDatabase, u'myconnection').invalidate()
 
+Contribute
+----------
+
+If you are having issues, please let us know.
+
+- Issue Tracker: https://github.com/collective/collective.saconnect/issues
+- Source Code: https://github.com/collective/collective.saconnect
+
+You can clone the source and submit pull requests or `get access to the github-collective <http://collective.github.com/>`_ and work directly on the project repository.

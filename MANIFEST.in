@@ -1,0 +1,4 @@
+include *.rst *.in
+graft collective
+graft docs
+global-exclude *pyc

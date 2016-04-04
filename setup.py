@@ -3,7 +3,7 @@ from setuptools import find_packages
 from setuptools import setup
 import os
 
-version = '2.0.1'
+version = '2.0.2.dev0'
 
 long_desc = open("README.rst").read() + "\n"
 long_desc += open(os.path.join("CHANGES.rst")).read()

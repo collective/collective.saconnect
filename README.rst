@@ -28,7 +28,7 @@ Example usage:
     saconnect = ISQLAlchemyConnectionStrings(getSite())
     myconnection = saconnect['myidentifier']
 
-``ISQLAlchemyConnectionStrings`` acts as a simple dictionary, although it's keys and values must be simple strings.
+``ISQLAlchemyConnectionStrings`` acts as a simple dictionary, although its keys and values must be simple strings.
 
 To import connection strings through GenericSetup, simply include a file named saconnections.xml in your profile, with a top-level 'connections'  element and one 'connection' element per connection, with name and string attributes::
 

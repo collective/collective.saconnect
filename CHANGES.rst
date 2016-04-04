@@ -1,10 +1,10 @@
 Changelog
 =========
 
-2.1 (unreleased)
+2.0.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- fixed packaging
 
 
 2.0 (2016-03-31)

@@ -4,7 +4,7 @@ Changelog
 2.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- support python3 (but did not fix for test) [terapyon]
 
 
 2.0.1 (2016-04-04)

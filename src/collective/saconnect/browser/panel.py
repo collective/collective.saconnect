@@ -93,7 +93,8 @@ class SQLAlchemyConnectionsForm(crud.CrudForm):
         self.storage[name] = data['connstring'].strip()
         return ConnectionLine(name, data['connstring'].strip(), self)
 
-    def remove(self, (id, item)):
+    def remove(self, id_item):
+        id, item = id_item
         del self.storage[item.connname]
 
 SQLAlchemyConnectionsView = wrap_form(SQLAlchemyConnectionsForm)

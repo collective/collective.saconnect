@@ -15,6 +15,7 @@ class TestSetup(unittest.TestCase):
         """Custom shared utility setup for tests."""
         self.portal = self.layer['portal']
         self.installer = getToolByName(self.portal, 'portal_quickinstaller')
+        self.installer.installProducts(['collective.saconnect'])
 
     def test_product_installed(self):
         """Test if collective.saconnect is installed with

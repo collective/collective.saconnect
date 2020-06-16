@@ -2,7 +2,8 @@
 from collective.saconnect.interfaces import ISQLAlchemyConnectionStrings
 from collective.saconnect.testing import COLLECTIVE_SACONNECT_INTEGRATION_TESTING  # noqa
 from Products.GenericSetup.testing import BodyAdapterTestCase
-from UserDict import UserDict
+# from UserDict import UserDict
+from collections import UserDict
 from zope.component import provideAdapter
 from zope.interface import directlyProvides
 

@@ -4,6 +4,7 @@ from Products.GenericSetup.interfaces import IBody
 from Products.GenericSetup.interfaces import ISetupEnviron
 from Products.GenericSetup.utils import XMLAdapterBase
 from zope import component
+import six
 
 FILENAME = 'saconnections.xml'
 
@@ -16,8 +17,8 @@ class SQLAlchemyConnectionStringsXMLAdapter(XMLAdapterBase):
 
     def _exportNode(self):
         node = self._doc.createElement('connections')
-        names = self.context.keys()
-        names.sort()
+        names = sorted(self.context.keys())
+        # names.sort()
 
         for name in names:
             child = self._doc.createElement('connection')
@@ -36,13 +37,18 @@ class SQLAlchemyConnectionStringsXMLAdapter(XMLAdapterBase):
         imported = []
         for child in node.childNodes:
             if child.nodeName == 'connection':
-                name = child.getAttribute('name').encode('ascii')
+                if six.PY2:
+                    name = child.getAttribute('name').encode('ascii')
+                else:
+                    name = child.getAttribute('name')
                 if child.hasAttribute('remove'):
                     if name in self.context:
                         del self.context[name]
                     continue
-
-                conn = child.getAttribute('string').encode('ascii')
+                if six.PY2:
+                    conn = child.getAttribute('string').encode('ascii')
+                else:
+                    conn = child.getAttribute('string')
                 self.context[name] = conn
                 imported.append(name)
         if imported:

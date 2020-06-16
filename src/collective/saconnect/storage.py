@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from .interfaces import ISQLAlchemyConnectionStrings
 from persistent.mapping import PersistentMapping
-from collections import MutableMapping
+# from UserDict import UserDict
+from collections import UserDict
+# from collections import MutableMapping
 from zope.annotation.interfaces import IAnnotatable
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
@@ -13,7 +15,7 @@ ANNKEY = 'collective.saconnect.storage'
 
 @implementer(ISQLAlchemyConnectionStrings)
 @adapter(IAnnotatable)
-class SQLAlchemyConnectionStrings(MutableMapping):
+class SQLAlchemyConnectionStrings(UserDict):
 
     def __init__(self, context):
         self.context = context

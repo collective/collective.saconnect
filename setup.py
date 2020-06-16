@@ -30,6 +30,7 @@ setup(
         'Plone',
         'plone.app.z3cform',
         'setuptools',
+        'six'
     ],
     extras_require={
         'test': [

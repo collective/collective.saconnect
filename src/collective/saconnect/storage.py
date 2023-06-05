@@ -2,7 +2,10 @@
 from .interfaces import ISQLAlchemyConnectionStrings
 from persistent.mapping import PersistentMapping
 # from UserDict import UserDict
-from collections import UserDict
+try:
+    from collections.abc import MutableMapping as DictMixin
+except ImportError:
+    from collections import MutableMapping as DictMixin
 # from collections import MutableMapping
 from zope.annotation.interfaces import IAnnotatable
 from zope.annotation.interfaces import IAnnotations
